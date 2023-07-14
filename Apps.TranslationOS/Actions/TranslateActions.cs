@@ -2,6 +2,7 @@
 using System.Text.Json.Serialization;
 using Apps.TranslationOS.Constants;
 using Apps.TranslationOS.Models.Request.Translate;
+using Apps.TranslationOS.Models.Request.TranslationManagement;
 using Apps.TranslationOS.Models.Response;
 using Apps.TranslationOS.RestSharp;
 using Blackbird.Applications.Sdk.Common;
@@ -50,6 +51,32 @@ public class TranslateActions
     public Task<TranslateResponse> CreateFileTranslation(IEnumerable<AuthenticationCredentialsProvider> creds,
         [ActionParameter] TranslateFileRequest requestData)
         => CreateTextTranslation(creds, new(requestData));
+
+
+    [Action("Cancel translation", Description = "Cancel translation request")]
+    public Task<CancelTranslationResponse> CancelTranslation(IEnumerable<AuthenticationCredentialsProvider> creds,
+        [ActionParameter] CancelTranslationRequest requestData)
+    {
+        var request = new TranslationOsRequest(ApiEndpoints.Cancel, Method.Post, creds);
+        request.AddJsonBody(requestData);
+
+        return _client.ExecuteWithHandling<CancelTranslationResponse>(request);
+    }
+
+    [Action("Update translation", Description = "Update translation request")]
+    public async Task<TranslateResponse> UpdateTranslation(IEnumerable<AuthenticationCredentialsProvider> creds,
+        [ActionParameter] UpdateTranslationRequest requestData)
+    {
+        var request = new TranslationOsRequest(ApiEndpoints.Update, Method.Post, creds);
+        request.AddJsonBody(JsonSerializer.Serialize(requestData, new JsonSerializerOptions
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+        }));
+
+        var response = await _client.ExecuteWithHandling<List<Translation>>(request);
+
+        return new(response);
+    }
 
     #endregion
 }
