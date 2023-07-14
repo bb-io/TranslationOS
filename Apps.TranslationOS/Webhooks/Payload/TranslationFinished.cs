@@ -9,7 +9,7 @@ public class TranslationFinished
 
     [JsonPropertyName("id_content")]
     [Display("Id content")]
-    public long IdContent { get; set; }
+    public string IdContent { get; set; }
 
     [JsonPropertyName("source_language")]
     [Display("Source language")]

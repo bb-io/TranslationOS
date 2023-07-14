@@ -14,7 +14,10 @@ public class ConnectionDefinition : IConnectionDefinition
             ConnectionUsage = ConnectionUsage.Actions,
             ConnectionProperties = new List<ConnectionProperty>
             {
-                new("apiKey"),
+                new("apiKey")
+                {
+                    DisplayName = "API Key"
+                },
             }
         }
     };

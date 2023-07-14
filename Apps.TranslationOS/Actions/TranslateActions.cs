@@ -1,4 +1,6 @@
-﻿using Apps.TranslationOS.Constants;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+using Apps.TranslationOS.Constants;
 using Apps.TranslationOS.Models.Request.Translate;
 using Apps.TranslationOS.Models.Response;
 using Apps.TranslationOS.RestSharp;
@@ -33,8 +35,11 @@ public class TranslateActions
     public async Task<TranslateResponse> CreateTextTranslation(IEnumerable<AuthenticationCredentialsProvider> creds,
         [ActionParameter] TranslateTextRequest requestData)
     {
-        var request = new TranslationOsRequest(ApiEndpoints.Translate, Method.Get, creds);
-        request.AddJsonBody(requestData);
+        var request = new TranslationOsRequest(ApiEndpoints.Translate, Method.Post, creds);
+        request.AddJsonBody(JsonSerializer.Serialize(requestData, new JsonSerializerOptions
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+        }));
 
         var response = await _client.ExecuteWithHandling<List<Translation>>(request);
 

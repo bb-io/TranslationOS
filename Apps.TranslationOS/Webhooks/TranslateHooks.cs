@@ -1,6 +1,5 @@
 ﻿using System.Net;
 using System.Text.Json;
-using System.Text.RegularExpressions;
 using Apps.TranslationOS.Webhooks.Payload;
 using Blackbird.Applications.Sdk.Common.Webhooks;
 
