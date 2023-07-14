@@ -8,7 +8,7 @@ namespace Apps.TranslationOS.Webhooks;
 [WebhookList]
 public class TranslateHooks
 {
-    [Webhook("On translation finished", Description = "On translation proccess finished")]
+    [Webhook("On translation finished", Description = "On translation process finished")]
     public Task<WebhookResponse<TranslationFinished>> TranslationFinished(WebhookRequest webhookRequest)
     {
         var payload = JsonSerializer.Deserialize<List<TranslationFinished>>(webhookRequest.Body.ToString());
