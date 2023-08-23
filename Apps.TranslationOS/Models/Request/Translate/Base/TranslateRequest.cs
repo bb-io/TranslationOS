@@ -40,7 +40,7 @@ public class TranslateRequest
     public string? ContentType { get; set; }
 
     [JsonProperty("context")]
-    [Display("Content")]
+    [Display("Context")]
     public Context? Context { get; set; }
 
     [JsonProperty("purchase_order")]
