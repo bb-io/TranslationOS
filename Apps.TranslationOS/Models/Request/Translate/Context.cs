@@ -1,21 +1,21 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace Apps.TranslationOS.Models.Request.Translate;
 
 public class Context
 {
-    [JsonPropertyName("instructions")]
+    [JsonProperty("instructions")]
     public string? Instructions { get; set; }
     
-    [JsonPropertyName("notes")]
+    [JsonProperty("notes")]
     public string? Notes { get; set; }
     
-    [JsonPropertyName("references")]
+    [JsonProperty("references")]
     public string? References { get; set; }
     
-    [JsonPropertyName("screenshot")]
+    [JsonProperty("screenshot")]
     public string? Screenshot { get; set; }
     
-    [JsonPropertyName("styleguide")]
+    [JsonProperty("styleguide")]
     public string? Styleguide { get; set; }
 }

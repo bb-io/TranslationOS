@@ -1,18 +1,18 @@
-﻿using System.Text.Json.Serialization;
-using Blackbird.Applications.Sdk.Common;
+﻿using Blackbird.Applications.Sdk.Common;
+using Newtonsoft.Json;
 
 namespace Apps.TranslationOS.Models.Response;
 
 public class CancelTranslationResponse
 {
-    [JsonPropertyName("id_request")]
-    [Display("Request ids")]
-    public IEnumerable<long> IdRequest { get; set; }
+    [JsonProperty("id_request")]
+    [Display("Request IDs")]
+    public IEnumerable<string> IdRequest { get; set; }
     
-    [JsonPropertyName("status")]
+    [JsonProperty("status")]
     [Display("Current status of request")]
     public string Status { get; set; }
     
-    [JsonPropertyName("message")]
+    [JsonProperty("message")]
     public string Message { get; set; }
 }

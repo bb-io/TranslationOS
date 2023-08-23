@@ -1,7 +1,7 @@
 ﻿using System.Net;
-using System.Text.Json;
 using Apps.TranslationOS.Webhooks.Payload;
 using Blackbird.Applications.Sdk.Common.Webhooks;
+using Newtonsoft.Json;
 
 namespace Apps.TranslationOS.Webhooks;
 
@@ -9,17 +9,17 @@ namespace Apps.TranslationOS.Webhooks;
 public class TranslateHooks
 {
     [Webhook("On translation finished", Description = "On translation process finished")]
-    public Task<WebhookResponse<TranslationFinished>> TranslationFinished(WebhookRequest webhookRequest)
+    public Task<WebhookResponse<TranslationWebhookResponse>> TranslationFinished(WebhookRequest webhookRequest)
     {
-        var payload = JsonSerializer.Deserialize<List<TranslationFinished>>(webhookRequest.Body.ToString());
+        var payload = JsonConvert.DeserializeObject<List<TranslationPayload>>(webhookRequest.Body.ToString());
 
         if (payload == null || !payload.Any())
             throw new Exception("No serializable payload was found in inocming request.");
 
-        return Task.FromResult(new WebhookResponse<TranslationFinished>
+        return Task.FromResult(new WebhookResponse<TranslationWebhookResponse>
         {
             HttpResponseMessage = new HttpResponseMessage(HttpStatusCode.OK),
-            Result = payload.First()
+            Result = new(payload)
         });
     }
 }

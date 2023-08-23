@@ -1,28 +1,32 @@
-﻿using System.Text.Json;
+﻿using Apps.TranslationOS.Constants;
 using Apps.TranslationOS.Models.Request;
+using Newtonsoft.Json;
 using RestSharp;
 
 namespace Apps.TranslationOS.RestSharp;
 
 public class TranslationOsClient : RestClient
 {
-    public TranslationOsClient() : base(new RestClientOptions { BaseUrl = new Uri("https://api-sandbox.translated.com/v2") })
+    public TranslationOsClient() : base(new RestClientOptions
+    {
+        BaseUrl = new(ApiEndpoints.ApiUrl)
+    })
     {
     }
 
     public async Task<T> ExecuteWithHandling<T>(TranslationOsRequest request)
     {
-        var response = await this.ExecuteAsync<T>(request);
+        var response = await ExecuteAsync(request);
 
-        if (response.IsSuccessStatusCode)
-            return response.Data;
+        if (!response.IsSuccessStatusCode)
+            throw ConfigureErrorException(response);
 
-        throw ConfigureErrorException(response);
+        return JsonConvert.DeserializeObject<T>(response.Content);
     }
 
     private Exception ConfigureErrorException(RestResponse response)
     {
-        var error = JsonSerializer.Deserialize<Error>(response.Content);
+        var error = JsonConvert.DeserializeObject<Error>(response.Content);
 
         throw new($"{error.Message}; Code: {error.Code}");
     }

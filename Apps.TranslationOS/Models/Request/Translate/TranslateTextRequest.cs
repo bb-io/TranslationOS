@@ -1,12 +1,12 @@
 ﻿using System.Text;
-using System.Text.Json.Serialization;
 using Apps.TranslationOS.Models.Request.Translate.Base;
+using Newtonsoft.Json;
 
 namespace Apps.TranslationOS.Models.Request.Translate;
 
 public class TranslateTextRequest : TranslateRequest
 {
-    [JsonPropertyName("content")] public string Content { get; set; }
+    [JsonProperty("content")] public string Content { get; set; }
 
     public TranslateTextRequest()
     {

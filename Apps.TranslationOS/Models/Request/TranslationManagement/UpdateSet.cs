@@ -1,25 +1,25 @@
-﻿using System.Text.Json.Serialization;
-using Blackbird.Applications.Sdk.Common;
+﻿using Blackbird.Applications.Sdk.Common;
+using Newtonsoft.Json;
 
 namespace Apps.TranslationOS.Models.Request.TranslationManagement;
 
 public class UpdateSet
 {
-    [JsonPropertyName("id_order")]
-    [Display("Id order")]
+    [JsonProperty("id_order")]
+    [Display("Order ID")]
     public string? IdOrder { get; set; }
 
-    [JsonPropertyName("id_order_group")]
-    [Display("Id order group")]
+    [JsonProperty("id_order_group")]
+    [Display("Order group ID")]
     public string? IdOrderGroup { get; set; }
 
-    [JsonPropertyName("dashboard_query_labels")]
+    [JsonProperty("dashboard_query_labels")]
     [Display("Dashboard query labels")]
     public IEnumerable<string>? DashboardQueryLabels { get; set; }
 
-    [JsonPropertyName("callback_url")]
-    [Display("Callback url")]
+    [JsonProperty("callback_url")]
+    [Display("Callback URL")]
     public string? CallbackUrl { get; set; }
 
-    [JsonPropertyName("metadata")] public string? Metadata { get; set; }
+    [JsonProperty("metadata")] public string? Metadata { get; set; }
 }

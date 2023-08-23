@@ -1,14 +1,14 @@
-﻿using System.Text.Json.Serialization;
-using Blackbird.Applications.Sdk.Common;
+﻿using Blackbird.Applications.Sdk.Common;
+using Newtonsoft.Json;
 
 namespace Apps.TranslationOS.Models.Request.TranslationManagement;
 
 public class UpdateTranslationRequest
 {
-    [JsonPropertyName("id_request")]
-    [Display("Request id")]
+    [JsonProperty("id_request")]
+    [Display("Request ID")]
     public long IdRequest { get; set; }
     
-    [JsonPropertyName("set")]
+    [JsonProperty("set")]
     public UpdateSet Set { get; set; }
 }
