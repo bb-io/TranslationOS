@@ -14,6 +14,6 @@ public class TranslateTextRequest : TranslateRequest
 
     public TranslateTextRequest(TranslateFileRequest requestData) : base(requestData)
     {
-        Content = Encoding.UTF8.GetString(requestData.File);
+        Content = Encoding.UTF8.GetString(requestData.File.Bytes);
     }
 }
