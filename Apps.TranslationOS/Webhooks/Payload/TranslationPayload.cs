@@ -8,7 +8,7 @@ namespace Apps.TranslationOS.Webhooks.Payload;
 public class TranslationPayload
 {
     [JsonProperty("id")] 
-    [Display("ID")]
+    [Display("Translation")]
     public string Id { get; set; }
 
     [JsonProperty("id_content")]
@@ -21,14 +21,13 @@ public class TranslationPayload
 
     [JsonProperty("target_language")]
     [Display("Target language")]
-    [DataSource(typeof(LanguageDataHandler))]
     public string TargetLanguage { get; set; }
 
     [JsonProperty("original_content")]
-    [Display("Original content")]
+    [Display("Original")]
     public string OriginalContent { get; set; }
 
     [JsonProperty("translated_content")]
-    [Display("Translated content")]
+    [Display("Translation")]
     public string TranslatedContent { get; set; }
 }

@@ -5,7 +5,7 @@ namespace Apps.TranslationOS.Models.Response;
 
 public class Translation
 {
-    [Display("ID")]
+    [Display("Request")]
     public string Id { get; set; }
 
     [JsonProperty("id_order")]

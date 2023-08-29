@@ -9,4 +9,6 @@ public static class ApiEndpoints
     public const string Update = "/update";
     public const string Languages = "/symbol/languages";
     public const string ContentTypes = "/symbol/content-types";
+    public const string Currencies = "/symbol/currencies";
+    public const string Countries = "/symbol/countries";
 }

@@ -4,6 +4,6 @@ namespace Apps.TranslationOS.Models.Request.TranslationManagement;
 
 public class CancelTranslationInput
 {
-    [Display("Request ID")]
+    [Display("Request")]
     public string Id { get; set; }
 }

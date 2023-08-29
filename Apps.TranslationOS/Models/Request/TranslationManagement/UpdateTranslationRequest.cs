@@ -6,7 +6,7 @@ namespace Apps.TranslationOS.Models.Request.TranslationManagement;
 public class UpdateTranslationRequest
 {
     [JsonProperty("id_request")]
-    [Display("Request ID")]
+    [Display("Request")]
     public long IdRequest { get; set; }
     
     [JsonProperty("set")]
