@@ -9,7 +9,7 @@ public class TranslationOsClient : RestClient
 {
     public TranslationOsClient() : base(new RestClientOptions
     {
-        BaseUrl = new(ApiEndpoints.ApiUrl)
+        BaseUrl = new(ApiEndpoints.ApiUrl),
     })
     {
     }

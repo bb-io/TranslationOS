@@ -27,10 +27,14 @@ namespace Apps.TranslationOS.Models.Request.Translate
             DashboardQueryLabels = input.DashboardQueryLabels;
             Metadata = input.Metadata;
             CharLimit = input.CharLimit;
+            Content = input.Content;
         }
 
         [JsonProperty("id_content")]
         public string IdContent { get; set; }
+
+        [JsonProperty("content")] 
+        public string Content { get; set; }
 
         [JsonProperty("source_language")]
         public string SourceLanguage { get; set; }

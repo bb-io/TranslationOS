@@ -16,10 +16,8 @@ namespace Apps.TranslationOS.Webhooks.Handlers
 {
     public class TranslationFinishedHandler : BaseInvocable, IWebhookEventHandler
     {
-        private string TranslationId { get; set; }
-        public TranslationFinishedHandler(InvocationContext invocationContext, [WebhookParameter] TranslationIdWebhookParameter input) : base(invocationContext)
+        public TranslationFinishedHandler(InvocationContext invocationContext) : base(invocationContext)
         {
-            TranslationId = input.Id;
         }
 
         public async Task SubscribeAsync(IEnumerable<AuthenticationCredentialsProvider> authenticationCredentialsProvider, Dictionary<string, string> values)

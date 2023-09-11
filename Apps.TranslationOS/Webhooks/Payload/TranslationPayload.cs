@@ -8,7 +8,7 @@ namespace Apps.TranslationOS.Webhooks.Payload;
 public class TranslationPayload
 {
     [JsonProperty("id")] 
-    [Display("Translation")]
+    [Display("Translation ID")]
     public string Id { get; set; }
 
     [JsonProperty("id_content")]
