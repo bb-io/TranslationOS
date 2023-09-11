@@ -67,7 +67,7 @@ namespace Apps.TranslationOS.Models.Request.Translate
         [JsonProperty("events")] public IEnumerable<string> Events => new List<string>() { "translation" };
 
         [JsonProperty("callback_url")]
-        public string CallbackUrl => ApplicationConstants.BridgeServiceUrl;
+        public string CallbackUrl { get; set; }
 
         [JsonProperty("metadata")] public string? Metadata { get; set; }
 

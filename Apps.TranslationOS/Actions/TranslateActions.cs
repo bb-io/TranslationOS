@@ -7,8 +7,10 @@ using Blackbird.Applications.Sdk.Common;
 using Blackbird.Applications.Sdk.Common.Actions;
 using Blackbird.Applications.Sdk.Common.Authentication;
 using Blackbird.Applications.Sdk.Common.Invocation;
+using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
 using RestSharp;
+using System.Text;
 
 namespace Apps.TranslationOS.Actions;
 
@@ -40,11 +42,14 @@ public class TranslateActions : BaseInvocable
         [ActionParameter] TranslateTextRequest requestData)
     {
         var request = new TranslationOsRequest(ApiEndpoints.Translate, Method.Post, Creds);
-        request.AddJsonBody(JsonConvert.SerializeObject(new TranslateTextDto(requestData), new JsonSerializerSettings()
+        var payload = new TranslateTextDto(requestData) { 
+            CallbackUrl = QueryHelpers.AddQueryString(ApplicationConstants.BridgeServiceUrl, "id", 
+                GetApiKeyHash(InvocationContext.AuthenticationCredentialsProviders.First(p => p.KeyName == "apiKey").Value)) 
+        };
+        request.AddJsonBody(JsonConvert.SerializeObject(payload, new JsonSerializerSettings()
         {
             NullValueHandling = NullValueHandling.Ignore
         }));
-
         var response = await _client.ExecuteWithHandling<List<Translation>>(request);
         return new(response);
     }
@@ -81,4 +86,16 @@ public class TranslateActions : BaseInvocable
     }
 
     #endregion
+
+    public static string GetApiKeyHash(string apiKey)
+    {
+        var crypt = new System.Security.Cryptography.SHA256Managed();
+        var hash = new System.Text.StringBuilder();
+        byte[] crypto = crypt.ComputeHash(Encoding.UTF8.GetBytes(apiKey));
+        foreach (byte theByte in crypto)
+        {
+            hash.Append(theByte.ToString("x2"));
+        }
+        return hash.ToString();
+    }
 }

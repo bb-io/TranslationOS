@@ -1,4 +1,5 @@
-﻿using Apps.TranslationOS.Webhooks.Payload;
+﻿using Apps.TranslationOS.Actions;
+using Apps.TranslationOS.Webhooks.Payload;
 using Blackbird.Applications.Sdk.Common;
 using Blackbird.Applications.Sdk.Common.Authentication;
 using Blackbird.Applications.Sdk.Common.Invocation;
@@ -26,7 +27,7 @@ namespace Apps.TranslationOS.Webhooks.Handlers
             await BridgeService.Subscribe(new BridgeRequest()
             {
                 Url = values["payloadUrl"],
-                Id = TranslationId,
+                Id = TranslateActions.GetApiKeyHash(InvocationContext.AuthenticationCredentialsProviders.First(p => p.KeyName == "apiKey").Value),
                 Event = "translation"
             }, new BridgeCredentials() { Token = ApplicationConstants.BlackbirdToken, ServiceUrl = ApplicationConstants.BridgeServiceUrl });
         }
@@ -36,7 +37,7 @@ namespace Apps.TranslationOS.Webhooks.Handlers
             await BridgeService.Unsubscribe(new BridgeRequest()
             {
                 Url = values["payloadUrl"],
-                Id = TranslationId,
+                Id = TranslateActions.GetApiKeyHash(InvocationContext.AuthenticationCredentialsProviders.First(p => p.KeyName == "apiKey").Value),
                 Event = "translation"
             }, new BridgeCredentials() { Token = ApplicationConstants.BlackbirdToken, ServiceUrl = ApplicationConstants.BridgeServiceUrl });
         }
