@@ -55,11 +55,11 @@ public class TranslateRequest
     [Display("Dashboard query labels")]
     public IEnumerable<string>? DashboardQueryLabels { get; set; }
 
-    [JsonProperty("events")] public IEnumerable<string>? Events { get; set; }
+    //[JsonProperty("events")] public IEnumerable<string>? Events { get; set; }
 
-    [JsonProperty("callback_url")]
-    [Display("Callback URL")]
-    public string? CallbackUrl { get; set; }
+    //[JsonProperty("callback_url")]
+    //[Display("Callback URL")]
+    //public string? CallbackUrl { get; set; }
 
     [JsonProperty("metadata")] public string? Metadata { get; set; }
 
@@ -84,8 +84,6 @@ public class TranslateRequest
         PurchaseOrder = requestData.PurchaseOrder;
         CostAttributionLabel = requestData.CostAttributionLabel;
         DashboardQueryLabels = requestData.DashboardQueryLabels;
-        Events = requestData.Events;
-        CallbackUrl = requestData.CallbackUrl;
         Metadata = requestData.Metadata;
         CharLimit = requestData.CharLimit;
     }

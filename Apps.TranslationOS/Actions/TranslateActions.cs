@@ -40,13 +40,12 @@ public class TranslateActions : BaseInvocable
         [ActionParameter] TranslateTextRequest requestData)
     {
         var request = new TranslationOsRequest(ApiEndpoints.Translate, Method.Post, Creds);
-        request.AddJsonBody(JsonConvert.SerializeObject(requestData, new JsonSerializerSettings()
+        request.AddJsonBody(JsonConvert.SerializeObject(new TranslateTextDto(requestData), new JsonSerializerSettings()
         {
             NullValueHandling = NullValueHandling.Ignore
         }));
 
         var response = await _client.ExecuteWithHandling<List<Translation>>(request);
-
         return new(response);
     }
 
