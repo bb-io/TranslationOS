@@ -43,8 +43,10 @@ public class TranslateActions : BaseInvocable
     {
         var request = new TranslationOsRequest(ApiEndpoints.Translate, Method.Post, Creds);
         var payload = new TranslateTextDto(requestData) { 
-            CallbackUrl = QueryHelpers.AddQueryString(ApplicationConstants.BridgeServiceUrl, "id", 
-                GetApiKeyHash(InvocationContext.AuthenticationCredentialsProviders.First(p => p.KeyName == "apiKey").Value)) 
+            CallbackUrl = requestData.CallbackUrl == null ? 
+            QueryHelpers.AddQueryString(ApplicationConstants.BridgeServiceUrl, "id", 
+                GetApiKeyHash(InvocationContext.AuthenticationCredentialsProviders.First(p => p.KeyName == "apiKey").Value)) :
+                requestData.CallbackUrl
         };
         request.AddJsonBody(JsonConvert.SerializeObject(payload, new JsonSerializerSettings()
         {

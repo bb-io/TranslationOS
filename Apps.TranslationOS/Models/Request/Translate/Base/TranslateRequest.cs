@@ -57,9 +57,9 @@ public class TranslateRequest
 
     //[JsonProperty("events")] public IEnumerable<string>? Events { get; set; }
 
-    //[JsonProperty("callback_url")]
-    //[Display("Callback URL")]
-    //public string? CallbackUrl { get; set; }
+    [JsonProperty("callback_url")]
+    [Display("Callback URL")]
+    public string? CallbackUrl { get; set; }
 
     [JsonProperty("metadata")] public string? Metadata { get; set; }
 
