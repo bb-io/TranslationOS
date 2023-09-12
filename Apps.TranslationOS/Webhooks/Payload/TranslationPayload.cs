@@ -28,6 +28,6 @@ public class TranslationPayload
     public string OriginalContent { get; set; }
 
     [JsonProperty("translated_content")]
-    [Display("Translation")]
+    [Display("Translated content")]
     public string TranslatedContent { get; set; }
 }
