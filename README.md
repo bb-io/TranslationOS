@@ -4,6 +4,8 @@ Blackbird is the new automation backbone for the language technology industry. B
 
 ## Introduction
 
+<!-- begin docs -->
+
 TranslationOS API allows you to localize your content programmatically in over 200+ languages using Translated services.
 
 ## Before setting up
@@ -39,3 +41,5 @@ Before you can connect you need to make sure that:
 ## Feedback
 
 Feedback to our implementation of TranslationOS is always very welcome. Reach out to us using the [established channels](https://www.blackbird.io/), or create an issue.
+
+<!-- end docs -->
