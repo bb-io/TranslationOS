@@ -4,10 +4,15 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Product>Blackbird TranslationOS</Product>
+        <Version>1.0.0</Version>
+        <Description>A full-stack solution designed to replace standard localization vendor models.</Description>
+        <AssemblyName>Apps.TranslationOS</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Blackbird.Applications.Sdk.Utils" Version="1.0.9" />
+      <PackageReference Include="Blackbird.Applications.Sdk.Common" Version="2.2.0-alpha4" />
+      <PackageReference Include="Blackbird.Applications.Sdk.Utils" Version="1.0.12" />
       <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
     </ItemGroup>
 
