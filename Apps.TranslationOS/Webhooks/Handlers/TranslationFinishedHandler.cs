@@ -16,6 +16,8 @@ namespace Apps.TranslationOS.Webhooks.Handlers
 {
     public class TranslationFinishedHandler : BaseInvocable, IWebhookEventHandler
     {
+        private string BridgeServiceUrl => $"{InvocationContext.UriInfo.BridgeServiceUrl}/webhooks/translationOS";
+
         public TranslationFinishedHandler(InvocationContext invocationContext) : base(invocationContext)
         {
         }
@@ -27,7 +29,7 @@ namespace Apps.TranslationOS.Webhooks.Handlers
                 Url = values["payloadUrl"],
                 Id = TranslateActions.GetApiKeyHash(InvocationContext.AuthenticationCredentialsProviders.First(p => p.KeyName == "apiKey").Value),
                 Event = "translation"
-            }, new BridgeCredentials() { Token = ApplicationConstants.BlackbirdToken, ServiceUrl = ApplicationConstants.BridgeServiceUrl });
+            }, new BridgeCredentials() { Token = ApplicationConstants.BlackbirdToken, ServiceUrl = BridgeServiceUrl });
         }
 
         public async Task UnsubscribeAsync(IEnumerable<AuthenticationCredentialsProvider> authenticationCredentialsProvider, Dictionary<string, string> values)
@@ -37,7 +39,7 @@ namespace Apps.TranslationOS.Webhooks.Handlers
                 Url = values["payloadUrl"],
                 Id = TranslateActions.GetApiKeyHash(InvocationContext.AuthenticationCredentialsProviders.First(p => p.KeyName == "apiKey").Value),
                 Event = "translation"
-            }, new BridgeCredentials() { Token = ApplicationConstants.BlackbirdToken, ServiceUrl = ApplicationConstants.BridgeServiceUrl });
+            }, new BridgeCredentials() { Token = ApplicationConstants.BlackbirdToken, ServiceUrl = BridgeServiceUrl });
         }
     }
 }

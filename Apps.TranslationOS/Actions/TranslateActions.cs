@@ -23,6 +23,8 @@ public class TranslateActions : BaseInvocable
 
     private IEnumerable<AuthenticationCredentialsProvider> Creds =>
         InvocationContext.AuthenticationCredentialsProviders;
+    
+    private string BridgeServiceUrl => $"{InvocationContext.UriInfo.BridgeServiceUrl}/webhooks/translationOS";
 
     #endregion
 
@@ -44,7 +46,7 @@ public class TranslateActions : BaseInvocable
         var request = new TranslationOsRequest(ApiEndpoints.Translate, Method.Post, Creds);
         var payload = new TranslateTextDto(requestData) { 
             CallbackUrl = requestData.CallbackUrl == null ? 
-            QueryHelpers.AddQueryString(ApplicationConstants.BridgeServiceUrl, "id", 
+            QueryHelpers.AddQueryString(BridgeServiceUrl, "id", 
                 GetApiKeyHash(InvocationContext.AuthenticationCredentialsProviders.First(p => p.KeyName == "apiKey").Value)) :
                 requestData.CallbackUrl
         };
