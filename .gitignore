@@ -354,5 +354,5 @@ healthchecksdb
 *.DS_Store
 *.dmg
 *.env
-/Apps.TranslationOS/ApplicationConstants.cs
+
 /ConsoleApp1/ConsoleApp1.csproj
