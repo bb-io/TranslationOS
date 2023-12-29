@@ -1,16 +1,10 @@
 ﻿using Apps.TranslationOS.Actions;
-using Apps.TranslationOS.Webhooks.Payload;
 using Blackbird.Applications.Sdk.Common;
 using Blackbird.Applications.Sdk.Common.Authentication;
 using Blackbird.Applications.Sdk.Common.Invocation;
 using Blackbird.Applications.Sdk.Common.Webhooks;
 using Blackbird.Applications.Sdk.Utils.Webhooks.Bridge;
 using Blackbird.Applications.Sdk.Utils.Webhooks.Bridge.Models.Request;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Apps.TranslationOS.Webhooks.Handlers
 {
