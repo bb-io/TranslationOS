@@ -1,6 +1,4 @@
-﻿using Apps.TranslationOS.DataSourceHandlers;
-using Blackbird.Applications.Sdk.Common;
-using Blackbird.Applications.Sdk.Common.Dynamic;
+﻿using Blackbird.Applications.Sdk.Common;
 using Newtonsoft.Json;
 
 namespace Apps.TranslationOS.Webhooks.Payload;

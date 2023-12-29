@@ -1,11 +1,8 @@
 ﻿using Apps.TranslationOS.Constants;
-using Apps.TranslationOS.Models.Request.Translate;
 using Apps.TranslationOS.Models.Response;
 using Apps.TranslationOS.RestSharp;
 using Blackbird.Applications.Sdk.Common.Authentication;
 using Blackbird.Applications.Sdk.Common.Connections;
-using Blackbird.Applications.Sdk.Common.Invocation;
-using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
 using RestSharp;
 
