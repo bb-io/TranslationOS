@@ -86,5 +86,6 @@ public class TranslateRequest
         DashboardQueryLabels = requestData.DashboardQueryLabels;
         Metadata = requestData.Metadata;
         CharLimit = requestData.CharLimit;
+        CallbackUrl = requestData.CallbackUrl;
     }
 }
