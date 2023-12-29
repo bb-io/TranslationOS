@@ -4,7 +4,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Product>TranslationOS</Product>
-    <Version>1.0.5</Version>
+    <Version>1.0.6</Version>
     <Description>A full-stack solution designed to replace standard localization vendor models.</Description>
     <AssemblyName>Apps.TranslationOS</AssemblyName>
   </PropertyGroup>

@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
 using RestSharp;
 using System.Text;
+using Blackbird.Applications.SDK.Extensions.FileManagement.Interfaces;
+using Blackbird.Applications.Sdk.Utils.Extensions.Files;
 
 namespace Apps.TranslationOS.Actions;
 
@@ -20,6 +22,7 @@ public class TranslateActions : BaseInvocable
     #region Fields
 
     private readonly TranslationOsClient _client;
+    private readonly IFileManagementClient _fileManagementClient;
 
     private IEnumerable<AuthenticationCredentialsProvider> Creds =>
         InvocationContext.AuthenticationCredentialsProviders;
@@ -30,9 +33,10 @@ public class TranslateActions : BaseInvocable
 
     #region Constructors
 
-    public TranslateActions(InvocationContext context) : base(context)
+    public TranslateActions(InvocationContext context, IFileManagementClient fileManagementClient) : base(context)
     {
         _client = new();
+        _fileManagementClient = fileManagementClient;
     }
 
     #endregion
@@ -45,10 +49,8 @@ public class TranslateActions : BaseInvocable
     {
         var request = new TranslationOsRequest(ApiEndpoints.Translate, Method.Post, Creds);
         var payload = new TranslateTextDto(requestData) { 
-            CallbackUrl = requestData.CallbackUrl == null ? 
-            QueryHelpers.AddQueryString(BridgeServiceUrl, "id", 
-                GetApiKeyHash(InvocationContext.AuthenticationCredentialsProviders.First(p => p.KeyName == "apiKey").Value)) :
-                requestData.CallbackUrl
+            CallbackUrl = requestData.CallbackUrl ?? QueryHelpers.AddQueryString(BridgeServiceUrl, "id", 
+                GetApiKeyHash(InvocationContext.AuthenticationCredentialsProviders.First(p => p.KeyName == "apiKey").Value))
         };
         request.AddJsonBody(JsonConvert.SerializeObject(payload, new JsonSerializerSettings()
         {
@@ -59,9 +61,17 @@ public class TranslateActions : BaseInvocable
     }
 
     [Action("Create file translation", Description = "Queue and process file translation")]
-    public Task<TranslateResponse> CreateFileTranslation(
+    public async Task<TranslateResponse> CreateFileTranslation(
         [ActionParameter] TranslateFileRequest requestData)
-        => CreateTextTranslation(new(requestData));
+    {
+        var file = await _fileManagementClient.DownloadAsync(requestData.File);
+        var bytes = await file.GetByteData();
+            
+        return await CreateTextTranslation(new(requestData)
+        {
+            Content = Encoding.UTF8.GetString(bytes)
+        });
+    }
 
 
     [Action("Cancel translation", Description = "Cancel translation request")]
