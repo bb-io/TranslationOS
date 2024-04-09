@@ -1,20 +1,24 @@
 ﻿using Blackbird.Applications.Sdk.Common;
+using Blackbird.Applications.Sdk.Common.Metadata;
 
 namespace Apps.TranslationOS;
 
-public class TranslationOSApplication
+public class TranslationOSApplication : IApplication, ICategoryProvider
 {
-    public class WordpressApplication : IApplication
+    public IEnumerable<ApplicationCategory> Categories
     {
-        public string Name
-        {
-            get => "TranslationOS";
-            set { }
-        }
+        get => [ApplicationCategory.LspPortal];
+        set { }
+    }
+    
+    public string Name
+    {
+        get => "TranslationOS";
+        set { }
+    }
 
-        public T GetInstance<T>()
-        {
-            throw new NotImplementedException();
-        }
+    public T GetInstance<T>()
+    {
+        throw new NotImplementedException();
     }
 }
