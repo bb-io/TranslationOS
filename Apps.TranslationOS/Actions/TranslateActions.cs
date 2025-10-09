@@ -16,7 +16,7 @@ using Blackbird.Applications.Sdk.Utils.Extensions.Files;
 
 namespace Apps.TranslationOS.Actions;
 
-[ActionList]
+[ActionList("Translate")]
 public class TranslateActions : BaseInvocable
 {
     #region Fields
