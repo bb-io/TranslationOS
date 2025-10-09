@@ -4,16 +4,16 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <Product>TranslationOS</Product>
-        <Version>1.0.7</Version>
+        <Version>1.0.8</Version>
         <Description>A full-stack solution designed to replace standard localization vendor models.</Description>
         <AssemblyName>Apps.TranslationOS</AssemblyName>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="Blackbird.Applications.Sdk.Common" Version="2.6.0"/>
-        <PackageReference Include="Blackbird.Applications.Sdk.Utils" Version="1.0.16"/>
-        <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="8.0.0"/>
+        <PackageReference Include="Blackbird.Applications.SDK.Blueprints" Version="1.0.0-rc.10308" />
+        <PackageReference Include="Blackbird.Applications.Sdk.Utils" Version="1.0.16" />
+        <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="8.0.0" />
     </ItemGroup>
     <ItemGroup>
-        <EmbeddedResource CopyToOutputDirectory="Always" Include="image\icon.png"/>
+        <EmbeddedResource CopyToOutputDirectory="Always" Include="image\icon.png" />
     </ItemGroup>
 </Project>
